@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Login extends Component {
   state = {
     name: '',
     email: '',
+  };
+
+  clickGame = async () => {
+    const { history } = this.props;
+    const response = await fetch('https://opentdb.com/api_token.php?command=request');
+    const data = await response.json();
+    localStorage.setItem('token', data.token);
+    history.push('/game');
   };
 
   render() {
@@ -33,6 +42,7 @@ class Login extends Component {
         <button
           data-testid="btn-play"
           disabled={ !name || !email }
+          onClick={ () => this.clickGame() }
         >
           Play
         </button>
@@ -40,5 +50,11 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;
