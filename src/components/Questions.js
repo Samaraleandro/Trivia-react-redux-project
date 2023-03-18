@@ -11,7 +11,6 @@ class Questions extends Component {
     const getToken = localStorage.getItem('token');
     const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${getToken}`);
     const data = await response.json();
-    console.log(data);
     this.setState({
       arrayQuestions: data.results,
     });
@@ -22,18 +21,40 @@ class Questions extends Component {
     }
   }
 
-  // createRandomButtons = (questions) => {
-  //   const randomButton = Math.floor(Math.random() * questions.length);
-  // };
+  selectRandomQuestions = () => {
+    const { arrayQuestions } = this.state;
+    // console.log(arrayQuestions);
+    // const numberTest = 0.5;
+    const randomButton = Math.floor(Math.random() * arrayQuestions.length);
+    const correctAnswers = [arrayQuestions[randomButton].correct_answer];
+    // console.log(correctAnswers);
+    const incorrectAnswers = [arrayQuestions[randomButton].incorrect_answers];
+    // console.log(incorrectAnswers);
+    const allAnswers = [...incorrectAnswers[0], correctAnswers[0]];
+    console.log(shuffledArray(allAnswers));
+    console.log(allAnswers);
+    // const shuffledArray = allAnswers.sort();
+    return allAnswers;
+  };
 
   render() {
     const { arrayQuestions } = this.state;
+
     return (
       <div>
         {arrayQuestions.length > 0 && (
           <>
             <h1 data-testid="question-category">{arrayQuestions[0].category}</h1>
             <h1 data-testid="question-text">{arrayQuestions[0].question}</h1>
+            {console.log(this.shuffleArray(this.selectRandomQuestions))}
+            {/* <h1>
+              {this.selectRandomQuestions().map((question, index) => (
+                <div key={ index }>
+                  <button>{question}</button>
+                </div>
+              )) }
+
+            </h1> */}
           </>
         )}
       </div>
