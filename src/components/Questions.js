@@ -34,6 +34,7 @@ class Questions extends Component {
 
   allAnswers = (arrayQuestions) => {
     const { indexNext } = this.state;
+    console.log(indexNext);
     if (arrayQuestions.length > 0) {
       const correctAnswer = {
         dataTestId: 'correct-answer',
@@ -76,8 +77,8 @@ class Questions extends Component {
     const multiplier = {
       hard: 3, medium: 2, easy: 1,
     };
-    const { arrayQuestions, currentTime } = this.state;
-    const level = arrayQuestions[0].difficulty;
+    const { arrayQuestions, currentTime, indexNext } = this.state;
+    const level = arrayQuestions[indexNext].difficulty;
     const operation = sumScore + (currentTime * multiplier[level]);
     console.log(operation);
     const answerClicked = e.target.value;
@@ -97,14 +98,18 @@ class Questions extends Component {
   };
 
   nextQuestion = () => {
-    const { arrayQuestions } = this.state;
+    const { history } = this.props;
+    const { arrayQuestions, indexNext } = this.state;
     this.setState((prevState) => ({
       indexNext: prevState.indexNext + 1,
       answered: false,
       isDisable: false,
       currentTime: 30,
-    }));
-    this.allAnswers(arrayQuestions);
+    }), () => this.allAnswers(arrayQuestions));
+    // this.allAnswers(arrayQuestions);
+    if (indexNext === arrayQuestions.length - 1) {
+      history.push('/feedback');
+    }
   };
 
   render() {
