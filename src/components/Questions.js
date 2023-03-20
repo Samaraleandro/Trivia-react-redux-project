@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Questions.css';
 
 class Questions extends Component {
   state = {
     arrayQuestions: [],
+    answered: false,
   };
 
   async componentDidMount() {
@@ -28,12 +30,14 @@ class Questions extends Component {
         dataTestId: 'correct-answer',
         correct: true,
         question: arrayQuestions[0].correct_answer,
+        color: 'green',
       };
       const incorrectAnswers = arrayQuestions[0].incorrect_answers
         .map((answer, index) => ({
           dataTestId: `wrong-answer-${index}`,
           correct: false,
           question: answer,
+          color: 'red',
         }));
       const mixAnswers = [...incorrectAnswers, correctAnswer];
       const magicNumber = 0.5;
@@ -42,8 +46,14 @@ class Questions extends Component {
     }
   };
 
+  changeColorBtn = () => {
+    this.setState({
+      answered: true,
+    });
+  };
+
   render() {
-    const { arrayQuestions } = this.state;
+    const { arrayQuestions, answered } = this.state;
     const catchAllAnswers = this.allAnswers();
     return (
       <div>
@@ -59,9 +69,10 @@ class Questions extends Component {
               catchAllAnswers.map((answer) => (
                 <button
                   key={ answer.question }
-                  className={ answer.question }
+                  className={ answered ? answer.color : '' }
                   data-testid={ answer.dataTestId }
                   value={ answer.correct }
+                  onClick={ () => this.changeColorBtn() }
                 >
                   {answer.question}
                 </button>
