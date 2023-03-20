@@ -12,7 +12,7 @@ class Login extends Component {
   clickGame = async () => {
     const { history, dispatch } = this.props;
     dispatch(handleAction(SAVE_USERS_INFO, this.state));
-    dispatch(requestAcess());
+    await dispatch(requestAcess());
     history.push('/game');
   };
 
@@ -69,4 +69,4 @@ Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect(null)(Login);
+export default connect()(Login);
