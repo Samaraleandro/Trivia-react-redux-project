@@ -76,15 +76,14 @@ class Questions extends Component {
     const multiplier = {
       hard: 3, medium: 2, easy: 1,
     };
-    const { arrayQuestions, currentTime } = this.state;
-    const level = arrayQuestions[0].difficulty;
+    const { arrayQuestions, currentTime, indexNext } = this.state;
+    const { score } = this.props;
+    const level = arrayQuestions[indexNext].difficulty;
     const operation = sumScore + (currentTime * multiplier[level]);
-    console.log(operation);
     const answerClicked = e.target.value;
-    console.log(answerClicked);
     if (answerClicked === 'true') {
       const { dispatch } = this.props;
-      dispatch(handleAction(SCORE_OPERATION, operation));
+      dispatch(handleAction(SCORE_OPERATION, score + operation));
     }
   };
 
@@ -97,14 +96,17 @@ class Questions extends Component {
   };
 
   nextQuestion = () => {
-    const { arrayQuestions } = this.state;
+    const { history } = this.props;
+    const { arrayQuestions, indexNext } = this.state;
     this.setState((prevState) => ({
       indexNext: prevState.indexNext + 1,
       answered: false,
       isDisable: false,
       currentTime: 30,
-    }));
-    this.allAnswers(arrayQuestions);
+    }), () => this.allAnswers(arrayQuestions));
+    if (indexNext === arrayQuestions.length - 1) {
+      history.push('/feedback');
+    }
   };
 
   render() {
@@ -157,7 +159,12 @@ Questions.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
+  dispatch: PropTypes.func,
+  score: PropTypes.number,
+}.isRequired;
 
-export default connect()(Questions);
+const mapStateToProps = (state) => ({
+  score: state.player.score,
+});
+
+export default connect(mapStateToProps)(Questions);
