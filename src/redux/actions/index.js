@@ -1,5 +1,6 @@
 export const REQUEST_PLAY_ACESS = 'REQUEST_PLAY_ACESS';
 export const SAVE_USERS_INFO = 'SAVE_USERS_INFO';
+export const SCORE_OPERATION = 'SCORE_OPERATION';
 
 export const handleAction = (action, payload) => ({ type: action, payload });
 

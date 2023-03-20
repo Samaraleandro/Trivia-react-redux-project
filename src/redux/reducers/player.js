@@ -1,4 +1,4 @@
-import { REQUEST_PLAY_ACESS, SAVE_USERS_INFO } from '../actions';
+import { REQUEST_PLAY_ACESS, SAVE_USERS_INFO, SCORE_OPERATION } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -20,6 +20,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       token: action.payload,
+    };
+  case SCORE_OPERATION:
+    return {
+      ...state,
+      score: action.payload,
     };
   default:
     return state;

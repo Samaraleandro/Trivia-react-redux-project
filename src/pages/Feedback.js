@@ -31,7 +31,7 @@ class Feedback extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  userAssertions: state.play.assertions,
+  userAssertions: state.player.assertions,
 });
 
 Feedback.propTypes = {

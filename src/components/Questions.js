@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Questions.css';
+import { connect } from 'react-redux';
+import { handleAction, SCORE_OPERATION } from '../redux/actions';
 
 class Questions extends Component {
   state = {
@@ -8,9 +10,9 @@ class Questions extends Component {
     answered: false,
     currentTime: 30,
     isDisable: false,
+    randomQuestion: [],
+    indexNext: 0,
   };
-
-  // Requisito 8 foi passou no teste mas encontramos alguns bugs que iremos solucionar nos requisitos posteriores.
 
   async componentDidMount() {
     const invalidTokenNumber = 3;
@@ -26,11 +28,11 @@ class Questions extends Component {
     this.setState({
       arrayQuestions: data.results,
     });
+    this.allAnswers(data.results);
     setInterval(() => this.timer(), time);
   }
 
-  allAnswers = () => {
-    const { arrayQuestions } = this.state;
+  allAnswers = (arrayQuestions) => {
     if (arrayQuestions.length > 0) {
       const correctAnswer = {
         dataTestId: 'correct-answer',
@@ -48,13 +50,15 @@ class Questions extends Component {
       const mixAnswers = [...incorrectAnswers, correctAnswer];
       const magicNumber = 0.5;
       const randomAnswer = mixAnswers.sort(() => magicNumber - Math.random());
-      return randomAnswer;
+      this.setState({
+        randomQuestion: randomAnswer,
+      });
     }
   };
 
   timer = () => {
-    const { currentTime } = this.state;
-    if (currentTime > 0) {
+    const { currentTime, answered } = this.state;
+    if (currentTime > 0 && !answered) {
       this.setState((prevState) => ({
         currentTime: prevState.currentTime - 1,
       }));
@@ -66,15 +70,40 @@ class Questions extends Component {
     }
   };
 
-  changeColorBtn = () => {
+  mathOperation = (e) => {
+    const sumScore = 10;
+    const multiplier = {
+      hard: 3, medium: 2, easy: 1,
+    };
+    const { arrayQuestions, currentTime } = this.state;
+    const level = arrayQuestions[0].difficulty;
+    const operation = sumScore + (currentTime * multiplier[level]);
+    console.log(operation);
+    const answerClicked = e.target.value;
+    console.log(answerClicked);
+    if (answerClicked === 'true') {
+      const { dispatch } = this.props;
+      dispatch(handleAction(SCORE_OPERATION, operation));
+    }
+  };
+
+  changeColorBtn = (e) => {
+    this.mathOperation(e);
     this.setState({
       answered: true,
     });
+    clearInterval(this.timer);
+  };
+
+  nextQuestion = () => {
+    // this.setState((prevState) => ({
+    //   indexNext: prevState.indexNext + 1,
+    // }));
   };
 
   render() {
-    const { arrayQuestions, answered, currentTime, isDisable } = this.state;
-    const catchAllAnswers = this.allAnswers();
+    const { arrayQuestions, answered, currentTime,
+      isDisable, randomQuestion, indexNext } = this.state;
     if (currentTime === 0) {
       clearInterval(this.timer);
     }
@@ -82,21 +111,21 @@ class Questions extends Component {
       <div>
         {arrayQuestions.length > 0 && (
           <>
-            <h1 data-testid="question-category">{arrayQuestions[0].category}</h1>
-            <h1 data-testid="question-text">{arrayQuestions[0].question}</h1>
+            <h1 data-testid="question-category">{arrayQuestions[indexNext].category}</h1>
+            <h1 data-testid="question-text">{arrayQuestions[indexNext].question}</h1>
             { currentTime }
           </>
         )}
         <div data-testid="answer-options">
           {
             arrayQuestions.length > 0 && (
-              catchAllAnswers.map((answer) => (
+              randomQuestion.map((answer) => (
                 <button
                   key={ answer.question }
                   className={ answered ? answer.color : '' }
                   data-testid={ answer.dataTestId }
                   value={ answer.correct }
-                  onClick={ () => this.changeColorBtn() }
+                  onClick={ (e) => this.changeColorBtn(e) }
                   disabled={ isDisable }
                 >
                   {answer.question}
@@ -104,6 +133,17 @@ class Questions extends Component {
               ))
             )
           }
+          {
+            answered && (
+              <button
+                data-testid="btn-next"
+                onClick={ () => this.nextQuestion() }
+              >
+                Next
+              </button>
+            )
+          }
+
         </div>
       </div>
     );
@@ -114,6 +154,7 @@ Questions.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default Questions;
+export default connect()(Questions);
