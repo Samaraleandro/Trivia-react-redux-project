@@ -2,8 +2,8 @@ import { REQUEST_PLAY_ACESS, SAVE_USERS_INFO } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
-  assertions: '',
-  score: '',
+  assertions: 0,
+  score: 0,
   gravatarEmail: '',
   token: '',
 };
