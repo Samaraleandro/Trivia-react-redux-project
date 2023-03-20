@@ -6,7 +6,7 @@ class Questions extends Component {
   state = {
     arrayQuestions: [],
     answered: false,
-    currentTime: 5,
+    currentTime: 30,
     isDisable: false,
   };
 
