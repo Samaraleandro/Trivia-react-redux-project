@@ -6,10 +6,15 @@ class Questions extends Component {
   state = {
     arrayQuestions: [],
     answered: false,
+    currentTime: 5,
+    isDisable: false,
   };
+
+  // Requisito 8 foi passou no teste mas encontramos alguns bugs que iremos solucionar nos requisitos posteriores.
 
   async componentDidMount() {
     const invalidTokenNumber = 3;
+    const time = 1000;
     const getToken = localStorage.getItem('token');
     const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${getToken}`);
     const data = await response.json();
@@ -21,6 +26,7 @@ class Questions extends Component {
     this.setState({
       arrayQuestions: data.results,
     });
+    setInterval(() => this.timer(), time);
   }
 
   allAnswers = () => {
@@ -46,6 +52,20 @@ class Questions extends Component {
     }
   };
 
+  timer = () => {
+    const { currentTime } = this.state;
+    if (currentTime > 0) {
+      this.setState((prevState) => ({
+        currentTime: prevState.currentTime - 1,
+      }));
+    } else {
+      this.setState({
+        isDisable: true,
+        answered: true,
+      });
+    }
+  };
+
   changeColorBtn = () => {
     this.setState({
       answered: true,
@@ -53,14 +73,18 @@ class Questions extends Component {
   };
 
   render() {
-    const { arrayQuestions, answered } = this.state;
+    const { arrayQuestions, answered, currentTime, isDisable } = this.state;
     const catchAllAnswers = this.allAnswers();
+    if (currentTime === 0) {
+      clearInterval(this.timer);
+    }
     return (
       <div>
         {arrayQuestions.length > 0 && (
           <>
             <h1 data-testid="question-category">{arrayQuestions[0].category}</h1>
             <h1 data-testid="question-text">{arrayQuestions[0].question}</h1>
+            { currentTime }
           </>
         )}
         <div data-testid="answer-options">
@@ -73,6 +97,7 @@ class Questions extends Component {
                   data-testid={ answer.dataTestId }
                   value={ answer.correct }
                   onClick={ () => this.changeColorBtn() }
+                  disabled={ isDisable }
                 >
                   {answer.question}
                 </button>
