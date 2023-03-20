@@ -11,7 +11,7 @@ class Header extends Component {
       <div>
         <img
           data-testid="header-profile-picture"
-          alt={ md5(userEmail).toString() }
+          alt="Imagem do usuário"
           src={ gravatarEmail }
         />
         <p data-testid="header-player-name">{userName}</p>
