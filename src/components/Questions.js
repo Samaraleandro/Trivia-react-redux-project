@@ -33,14 +33,15 @@ class Questions extends Component {
   }
 
   allAnswers = (arrayQuestions) => {
+    const { indexNext } = this.state;
     if (arrayQuestions.length > 0) {
       const correctAnswer = {
         dataTestId: 'correct-answer',
         correct: true,
-        question: arrayQuestions[0].correct_answer,
+        question: arrayQuestions[indexNext].correct_answer,
         color: 'green',
       };
-      const incorrectAnswers = arrayQuestions[0].incorrect_answers
+      const incorrectAnswers = arrayQuestions[indexNext].incorrect_answers
         .map((answer, index) => ({
           dataTestId: `wrong-answer-${index}`,
           correct: false,
@@ -96,9 +97,14 @@ class Questions extends Component {
   };
 
   nextQuestion = () => {
-    // this.setState((prevState) => ({
-    //   indexNext: prevState.indexNext + 1,
-    // }));
+    const { arrayQuestions } = this.state;
+    this.setState((prevState) => ({
+      indexNext: prevState.indexNext + 1,
+      answered: false,
+      isDisable: false,
+      currentTime: 30,
+    }));
+    this.allAnswers(arrayQuestions);
   };
 
   render() {
@@ -114,12 +120,8 @@ class Questions extends Component {
             <h1 data-testid="question-category">{arrayQuestions[indexNext].category}</h1>
             <h1 data-testid="question-text">{arrayQuestions[indexNext].question}</h1>
             { currentTime }
-          </>
-        )}
-        <div data-testid="answer-options">
-          {
-            arrayQuestions.length > 0 && (
-              randomQuestion.map((answer) => (
+            <div data-testid="answer-options">
+              {randomQuestion.map((answer) => (
                 <button
                   key={ answer.question }
                   className={ answered ? answer.color : '' }
@@ -130,21 +132,22 @@ class Questions extends Component {
                 >
                   {answer.question}
                 </button>
-              ))
-            )
-          }
-          {
-            answered && (
-              <button
-                data-testid="btn-next"
-                onClick={ () => this.nextQuestion() }
-              >
-                Next
-              </button>
-            )
-          }
+              ))}
+              {
+                answered && (
+                  <button
+                    data-testid="btn-next"
+                    onClick={ () => this.nextQuestion() }
+                  >
+                    Next
+                  </button>
+                )
+              }
 
-        </div>
+            </div>
+          </>
+        )}
+
       </div>
     );
   }
