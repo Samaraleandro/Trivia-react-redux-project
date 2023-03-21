@@ -5,12 +5,12 @@ import Header from '../components/Header';
 
 class Feedback extends Component {
   render() {
-    const { userAssertions } = this.props;
+    const { userAssertions, userScore } = this.props;
     const three = 3;
     return (
       <div>
         <Header />
-        { userAssertions <= three ? (
+        { userAssertions < three ? (
           <p
             data-testid="feedback-text"
           >
@@ -25,6 +25,20 @@ class Feedback extends Component {
 
           </p>
         ) }
+
+        <p
+          data-testid="feedback-total-score"
+        >
+          { userScore }
+
+        </p>
+
+        <p
+          data-testid="feedback-total-question"
+        >
+          { userAssertions }
+
+        </p>
       </div>
     );
   }
@@ -32,10 +46,12 @@ class Feedback extends Component {
 
 const mapStateToProps = (state) => ({
   userAssertions: state.player.assertions,
+  userScore: state.player.score,
 });
 
 Feedback.propTypes = {
-  userAssertions: PropTypes.number.isRequired,
-};
+  userAssertions: PropTypes.number,
+  userScore: PropTypes.number,
+}.isRequired;
 
 export default connect(mapStateToProps)(Feedback);
