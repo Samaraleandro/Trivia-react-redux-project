@@ -4,6 +4,25 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
 class Feedback extends Component {
+  saveInf() {
+    const { userScore, userGravatarEmail, userName, history } = this.props;
+    if (!localStorage.getItem('users')) {
+      const objUsers = { userName,
+        userGravatarEmail,
+        userScore };
+      localStorage.setItem('users', JSON.stringify([objUsers]));
+    } else {
+      const newUsers = JSON.parse(localStorage.getItem('users'));
+      const objUsers = { userName,
+        userGravatarEmail,
+        userScore };
+      const spreadUsers = [...newUsers, objUsers];
+      const sortNewUsers = spreadUsers.sort((a, b) => b.userScore - a.userScore);
+      localStorage.setItem('users', JSON.stringify(sortNewUsers));
+    }
+    history.push('/ranking');
+  }
+
   render() {
     const { userAssertions, userScore, history } = this.props;
     const three = 3;
@@ -47,7 +66,7 @@ class Feedback extends Component {
         </button>
         <button
           data-testid="btn-ranking"
-          onClick={ () => history.push('/ranking') }
+          onClick={ () => this.saveInf() }
         >
           Ranking
         </button>
@@ -59,6 +78,8 @@ class Feedback extends Component {
 const mapStateToProps = (state) => ({
   userAssertions: state.player.assertions,
   userScore: state.player.score,
+  userGravatarEmail: state.player.imgGravatar,
+  userName: state.player.name,
 });
 
 Feedback.propTypes = {
