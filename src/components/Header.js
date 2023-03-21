@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
+import { IMG_GRAVATAR, handleAction } from '../redux/actions';
 
 class Header extends Component {
-  render() {
-    const { userName, userEmail, userScore } = this.props;
+  state = {
+    userGravatarEmail: '',
+  };
+
+  componentDidMount() {
+    const { userEmail, dispatch } = this.props;
     const gravatarEmail = `https://www.gravatar.com/avatar/${md5(userEmail).toString()}`;
+    dispatch(handleAction(IMG_GRAVATAR, gravatarEmail));
+    this.setState({ userGravatarEmail: gravatarEmail });
+  }
+
+  render() {
+    const { userName, userScore } = this.props;
+    const { userGravatarEmail } = this.state;
     return (
       <div>
         <img
           data-testid="header-profile-picture"
           alt="Imagem do usuário"
-          src={ gravatarEmail }
+          src={ userGravatarEmail }
         />
         <p data-testid="header-player-name">{userName}</p>
         <p data-testid="header-score">{ userScore }</p>
