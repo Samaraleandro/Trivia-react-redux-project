@@ -61,7 +61,7 @@
   width: 439px;
 }
 
-p:nth-of-type( 1 ) {
+.results p:nth-of-type( 1 ) {
   align-items: center;
   color: #ea5d5d;
   display: flex;
