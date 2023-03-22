@@ -1,7 +1,120 @@
 .green {
+  background: white;
   border: 3px solid rgb(6, 240, 15);
+  border-radius: 100px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 64px;
+  line-height: 150%;
+  width: 50%;
 }
 
 .red {
+  background: white;
   border: 3px solid red;
+  border-radius: 100px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 64px;
+  line-height: 150%;
+  width: 50%;
+}
+
+.mainContainer {
+  display: flex;
+}
+
+.containerQuestion {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  max-width: 45%;
+}
+
+.questionYellowBox {
+  align-items: center;
+  background: #f9ba18;
+  border-radius: 100px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  font-family: Epilogue , Arial , Helvetica , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 45px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 380px;
+  width: 550px;
+}
+
+.questionTimerContainer {
+  align-items: center;
+  display: block;
+  font-family: Epilogue , Arial , Helvetica , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin: 30px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.timer {
+  align-items: center;
+  display: flex;
+  font-family: Verdana , Tahoma , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 150%;
+  margin-top: 20px;
+
+}
+
+.containerAnswers {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  min-width: fit-content;
+}
+
+.default {
+  background: white;
+  border-radius: 100px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 64px;
+  line-height: 150%;
+  width: 50%;
+}
+
+.default:hover {
+  background: rgb(211, 209, 209);
+}
+
+.nextBtn {
+  background: #2fc18c;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: block;
+  width: 200px;
+}
+
+.nextBtn:hover {
+  background: #218b65;
 }

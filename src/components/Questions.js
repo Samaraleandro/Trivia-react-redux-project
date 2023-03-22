@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './Questions.css';
 import { connect } from 'react-redux';
 import { handleAction, SCORE_OPERATION } from '../redux/actions';
+import timerDuotone from '../Images/timer-duotone.png';
 
 class Questions extends Component {
   state = {
@@ -116,36 +117,53 @@ class Questions extends Component {
       clearInterval(this.timer);
     }
     return (
-      <div>
+      <div className="mainContainer">
         {arrayQuestions.length > 0 && (
           <>
-            <h1 data-testid="question-category">{arrayQuestions[indexNext].category}</h1>
-            <h1 data-testid="question-text">{arrayQuestions[indexNext].question}</h1>
-            { currentTime }
-            <div data-testid="answer-options">
-              {randomQuestion.map((answer) => (
-                <button
-                  key={ answer.question }
-                  className={ answered ? answer.color : '' }
-                  data-testid={ answer.dataTestId }
-                  value={ answer.correct }
-                  onClick={ (e) => this.changeColorBtn(e) }
-                  disabled={ isDisable }
-                >
-                  {answer.question}
-                </button>
-              ))}
+            <div className="containerQuestion">
+              <div className="questionYellowBox">
+                <h1 data-testid="question-category">
+                  {arrayQuestions[indexNext].category}
+                </h1>
+              </div>
+              <div className="questionTimerContainer">
+                <div>
+                  <p data-testid="question-text">
+                    {arrayQuestions[indexNext].question}
+                  </p>
+                </div>
+                <div className="timer">
+                  <img src={ timerDuotone } alt="time left" />
+                  { currentTime }
+                </div>
+              </div>
+            </div>
+            <div data-testid="answer-options" className="containerAnswers">
+              <div className="buttonsAnswer">
+                {randomQuestion.map((answer) => (
+                  <button
+                    key={ answer.question }
+                    className={ answered ? answer.color : 'default' }
+                    data-testid={ answer.dataTestId }
+                    value={ answer.correct }
+                    onClick={ (e) => this.changeColorBtn(e) }
+                    disabled={ isDisable }
+                  >
+                    {answer.question}
+                  </button>
+                ))}
+              </div>
               {
                 answered && (
                   <button
                     data-testid="btn-next"
                     onClick={ () => this.nextQuestion() }
+                    className="nextBtn"
                   >
                     Next
                   </button>
                 )
               }
-
             </div>
           </>
         )}
