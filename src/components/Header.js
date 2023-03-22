@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 import { IMG_GRAVATAR, handleAction } from '../redux/actions';
+import './Header.css';
+import iconStar from '../Images/iconStar.png';
 
 class Header extends Component {
   state = {
@@ -20,14 +22,40 @@ class Header extends Component {
     const { userName, userScore } = this.props;
     const { userGravatarEmail } = this.state;
     return (
-      <div>
+      <div
+        className="div-header"
+      >
         <img
+          className="img-header"
           data-testid="header-profile-picture"
           alt="Imagem do usuário"
           src={ userGravatarEmail }
         />
-        <p data-testid="header-player-name">{userName}</p>
-        <p data-testid="header-score">{ userScore }</p>
+
+        <p
+          className="header-player-name"
+          data-testid="header-player-name"
+        >
+          {userName}
+        </p>
+
+        <div
+          className="div-iconStar"
+        >
+          <img
+            className="iconStar"
+            alt="Icon Star Score"
+            src={ iconStar }
+          />
+        </div>
+        <p
+          data-testid="header-score"
+          className="header-score"
+        >
+          Pontos:
+          {' '}
+          { userScore }
+        </p>
       </div>
     );
   }

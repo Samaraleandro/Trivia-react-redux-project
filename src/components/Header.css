@@ -1,0 +1,62 @@
+.div-header {
+  background: white;
+  height: 113px;
+  left: 0;
+  position: static;
+  top: 0;
+  width: 100%;
+}
+
+.img-header {
+  border-radius: 18.137px;
+  height: 37px;
+  left: 832px;
+  position: absolute;
+  top: 38px;
+  width: 37px;
+}
+
+.iconStar {
+  bottom: 90.33%;
+  left: 80.98%;
+  position: absolute;
+  right: 16.68%;
+  top: 13%;
+}
+
+.header-score {
+  align-items: center;
+  color: black;
+
+  /* identical to box height, or 24px */
+  display: flex;
+  font-family: Franklin Gothic Medium , Arial Narrow , Arial , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 24px;
+  left: 1150px;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  position: absolute;
+  top: 44px;
+  width: 101px;
+}
+
+.header-player-name {
+  align-items: center;
+  color: black;
+
+  /* identical to box height, or 24px */
+  display: flex;
+  font-family: Franklin Gothic Medium , Arial Narrow , Arial , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 24px;
+  left: 882px;
+  line-height: 150%;
+  position: absolute;
+  top: 48px;
+  width: 144px;
+}
