@@ -9,7 +9,6 @@ export const handleAction = (action, payload) => ({ type: action, payload });
 export const requestAcess = () => async (dispatch) => {
   const response = await fetch('https://opentdb.com/api_token.php?command=request');
   const data = await response.json();
-  // console.log(data);
   localStorage.setItem('token', data.token);
   dispatch(handleAction(REQUEST_PLAY_ACESS, data.token));
 };
