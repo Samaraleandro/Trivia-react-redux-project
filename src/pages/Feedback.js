@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import './Feedback.css';
 
 class Feedback extends Component {
   saveInf() {
@@ -27,49 +28,55 @@ class Feedback extends Component {
     const { userAssertions, userScore, history } = this.props;
     const three = 3;
     return (
-      <div>
+      <div className="div-results">
         <Header />
-        { userAssertions < three ? (
+        <div className="results">
+          { userAssertions < three ? (
+            <p
+              data-testid="feedback-text"
+            >
+              Could be better...
+
+            </p>
+          ) : (
+            <p
+              data-testid="feedback-text"
+            >
+              Well Done!
+
+            </p>
+          ) }
+
           <p
-            data-testid="feedback-text"
+            data-testid="feedback-total-score"
           >
-            Could be better...
+            { userScore }
 
           </p>
-        ) : (
+
           <p
-            data-testid="feedback-text"
+            data-testid="feedback-total-question"
           >
-            Well Done!
+            { userAssertions }
 
           </p>
-        ) }
-
-        <p
-          data-testid="feedback-total-score"
-        >
-          { userScore }
-
-        </p>
-
-        <p
-          data-testid="feedback-total-question"
-        >
-          { userAssertions }
-
-        </p>
-        <button
-          data-testid="btn-play-again"
-          onClick={ () => history.push('/') }
-        >
-          Play Again
-        </button>
-        <button
-          data-testid="btn-ranking"
-          onClick={ () => this.saveInf() }
-        >
-          Ranking
-        </button>
+        </div>
+        <div className="div-button">
+          <button
+            data-testid="btn-play-again"
+            className="btn-play-again"
+            onClick={ () => history.push('/') }
+          >
+            Play Again
+          </button>
+          <button
+            data-testid="btn-ranking"
+            className="btn-ranking"
+            onClick={ () => this.saveInf() }
+          >
+            Ranking
+          </button>
+        </div>
       </div>
     );
   }
