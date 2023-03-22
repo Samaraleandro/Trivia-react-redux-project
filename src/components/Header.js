@@ -48,14 +48,20 @@ class Header extends Component {
             src={ iconStar }
           />
         </div>
-        <p
-          data-testid="header-score"
-          className="header-score"
+        <div
+          className="div-header-score"
+
         >
-          Pontos:
-          {' '}
-          { userScore }
-        </p>
+          <span>
+            Pontos :
+            <span
+              data-testid="header-score"
+            >
+              { userScore }
+            </span>
+          </span>
+
+        </div>
       </div>
     );
   }
