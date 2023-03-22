@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { RESET_STATE, handleAction } from '../redux/actions';
+import './Ranking.css';
+import iconStar from '../Images/iconStar.png';
+import trivia from '../Images/trivia.png';
 
 class Ranking extends Component {
   resetState = () => {
@@ -13,45 +16,56 @@ class Ranking extends Component {
   render() {
     const usersRanking = JSON.parse(localStorage.getItem('users'));
     return (
-      <div>
-        <h1
-          data-testid="ranking-title"
-        >
-          Ranking
-
-        </h1>
-
-        <button
-          data-testid="btn-go-home"
-          onClick={ () => this.resetState() }
-        >
-          Início
-        </button>
-
-        { usersRanking.map((user, index) => (
-          <div
-            key={ index }
+      <>
+        <img className="trivia-img" src={ trivia } alt="logo trivia" />
+        <div className="div-ranking">
+          <h1
+            data-testid="ranking-title"
           >
-            <img
-              alt={ `${user.userName}` }
-              src={ user.userGravatarEmail }
-            />
-            <p
-              data-testid={ `player-name-${index}` }
+            Ranking
+
+          </h1>
+
+          <button
+            data-testid="btn-go-home"
+            onClick={ () => this.resetState() }
+          >
+            Início
+          </button>
+
+          { usersRanking.map((user, index) => (
+            <div
+              className="ranking-list"
+              key={ index }
             >
-              { user.userName }
+              <div className="img-name">
+                <img
+                  alt={ `${user.userName}` }
+                  src={ user.userGravatarEmail }
+                />
+                <p
+                  data-testid={ `player-name-${index}` }
+                >
+                  { user.userName }
 
-            </p>
-            <p
-              data-testid={ `player-score-${index}` }
-            >
-              { user.userScore }
+                </p>
+              </div>
+              <div className="star-score">
+                <img
+                  src={ iconStar }
+                  alt="estrela"
+                />
+                <p
+                  data-testid={ `player-score-${index}` }
+                >
+                  { user.userScore }
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
 
-            </p>
-          </div>
-        ))}
-
-      </div>
+      </>
     );
   }
 }
