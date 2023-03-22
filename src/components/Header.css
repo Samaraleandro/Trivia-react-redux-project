@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.img-header {
+.img-header-user {
   border-radius: 18.137px;
   height: 37px;
   left: 832px;
@@ -21,7 +21,7 @@
   left: 80.98%;
   position: absolute;
   right: 16.68%;
-  top: 6%;
+  top: 5.69%;
 }
 
 .div-header-score {
@@ -34,13 +34,16 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  height: 24px;
+  gap: 15px;
+  height: 32px;
+  justify-content: space-between;
   left: 1150px;
   letter-spacing: 0.12em;
   line-height: 150%;
   position: absolute;
+  text-align: center;
   top: 44px;
-  width: 101px;
+  width: 120px;
 }
 
 .header-player-name {

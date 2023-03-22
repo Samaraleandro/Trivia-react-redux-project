@@ -26,7 +26,7 @@ class Header extends Component {
         className="div-header"
       >
         <img
-          className="img-header"
+          className="img-header-user"
           data-testid="header-profile-picture"
           alt="Imagem do usuário"
           src={ userGravatarEmail }
@@ -40,18 +40,14 @@ class Header extends Component {
         </p>
 
         <div
-          className="div-iconStar"
+          className="div-header-score"
+
         >
           <img
             className="iconStar"
             alt="Icon Star Score"
             src={ iconStar }
           />
-        </div>
-        <div
-          className="div-header-score"
-
-        >
           <span>
             Pontos :
             <span
