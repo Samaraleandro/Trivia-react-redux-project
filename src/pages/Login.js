@@ -23,29 +23,25 @@ class Login extends Component {
     const { name, email } = this.state;
     const { history } = this.props;
     return (
-      <div>
-        <div
-          className="div-trivia"
-        >
+      <div className="div-trivia">
+        <div className="trivia-img">
           <img
+            className="img-size"
             alt="TRIVIA"
             src={ trivia }
-            className="TRIVIA"
           />
-
         </div>
-        <div
-          className="div-login"
-        >
+
+        <form className="form-trivia">
           <label
             className="label-name"
           >
-            Nome
             <input
               className="input-name"
               data-testid="input-player-name"
               type="text"
               name="name"
+              placeholder="Qual o seu nome?"
               value={ name }
               onChange={ (e) => this.setState({ name: e.target.value }) }
             />
@@ -53,18 +49,19 @@ class Login extends Component {
           <label
             className="label-email"
           >
-            Email
+
             <input
               className="input-email"
               data-testid="input-gravatar-email"
               type="email"
+              placeholder="Qual o seu e-mail do gravatar?"
               name="email"
               value={ email }
               onChange={ (e) => this.setState({ email: e.target.value }) }
             />
           </label>
           <button
-            className="button-jogar"
+            className="btn-play"
             type="button"
             data-testid="btn-play"
             disabled={ !name || !email }
@@ -72,20 +69,24 @@ class Login extends Component {
           >
             Play
           </button>
-          <button
-            className="button-configuração"
-            type="button"
-            data-testid="btn-settings"
-            onClick={ () => history.push('/settings') }
-          >
+          <div className="container-btn-settings">
             <img
               alt="configurações"
               src={ configuração }
-              className="img-configuração"
+              className="img-settings"
             />
-            Configurações
-          </button>
-        </div>
+            <button
+              className="btn-settings"
+              type="button"
+              data-testid="btn-settings"
+              onClick={ () => history.push('/settings') }
+            >
+              Configurações
+            </button>
+
+          </div>
+
+        </form>
       </div>
     );
   }
