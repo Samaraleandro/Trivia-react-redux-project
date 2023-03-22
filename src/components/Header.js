@@ -25,20 +25,23 @@ class Header extends Component {
       <div
         className="div-header"
       >
-        <img
-          className="img-header-user"
-          data-testid="header-profile-picture"
-          alt="Imagem do usuário"
-          src={ userGravatarEmail }
-        />
-
-        <p
-          className="header-player-name"
-          data-testid="header-player-name"
+        <div
+          className="div-header-player-name"
         >
-          {userName}
-        </p>
+          <img
+            className="img-header-user"
+            data-testid="header-profile-picture"
+            alt="Imagem do usuário"
+            src={ userGravatarEmail }
+          />
 
+          <h4
+            className="header-player-name"
+            data-testid="header-player-name"
+          >
+            {userName}
+          </h4>
+        </div>
         <div
           className="div-header-score"
 
@@ -49,7 +52,7 @@ class Header extends Component {
             src={ iconStar }
           />
           <span>
-            Pontos :
+            { 'Pontos: ' }
             <span
               data-testid="header-score"
             >

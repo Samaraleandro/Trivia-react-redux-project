@@ -1,6 +1,12 @@
+* { margin: 0;
+  padding: 0;}
+
 .div-header {
+  align-items: center;
   background: white;
+  display: flex;
   height: 113px;
+  justify-content: flex-end;
   left: 0;
   position: static;
   top: 0;
@@ -10,56 +16,31 @@
 .img-header-user {
   border-radius: 18.137px;
   height: 37px;
-  left: 832px;
-  position: absolute;
   top: 38px;
   width: 37px;
-}
-
-.iconStar {
-  bottom: 90.33%;
-  left: 80.98%;
-  position: absolute;
-  right: 16.68%;
-  top: 5.69%;
 }
 
 .div-header-score {
   align-items: center;
   color: black;
-
-  /* identical to box height, or 24px */
   display: flex;
-  font-family: Franklin Gothic Medium , Arial Narrow , Arial , sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  gap: 15px;
-  height: 32px;
-  justify-content: space-between;
-  left: 1150px;
-  letter-spacing: 0.12em;
-  line-height: 150%;
-  position: absolute;
-  text-align: center;
-  top: 44px;
+  font-size: 15px;
+  justify-content: space-evenly;
   width: 120px;
 }
 
 .header-player-name {
-  align-items: center;
   color: black;
+  font-size: 15px;
+  margin-left: 2%;
+  width: 80;
+}
 
-  /* identical to box height, or 24px */
+.div-header-player-name {
+  align-items: center;
   display: flex;
-  font-family: Franklin Gothic Medium , Arial Narrow , Arial , sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  height: 24px;
-  left: 882px;
-  line-height: 150%;
-  position: absolute;
-  top: 48px;
-  width: 144px;
+  height: 40px;
+  justify-content: space-around;
+  margin-right: 5%;
+  width: 150px;
 }
