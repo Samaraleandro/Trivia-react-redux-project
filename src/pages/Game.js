@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
-import './Game.css';
 import trivia from '../Images/trivia.png';
 
 class Game extends Component {
