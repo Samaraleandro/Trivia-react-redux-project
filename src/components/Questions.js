@@ -138,32 +138,36 @@ class Questions extends Component {
                 </div>
               </div>
             </div>
-            <div data-testid="answer-options" className="containerAnswers">
-              <div className="buttonsAnswer">
-                {randomQuestion.map((answer) => (
-                  <button
-                    key={ answer.question }
-                    className={ answered ? answer.color : 'default' }
-                    data-testid={ answer.dataTestId }
-                    value={ answer.correct }
-                    onClick={ (e) => this.changeColorBtn(e) }
-                    disabled={ isDisable }
-                  >
-                    {answer.question}
-                  </button>
-                ))}
+            <div className="containerLeftSide">
+              <div data-testid="answer-options" className="containerAnswers">
+                <div className="buttonsAnswer">
+                  {randomQuestion.map((answer) => (
+                    <button
+                      key={ answer.question }
+                      className={ answered ? answer.color : 'default' }
+                      data-testid={ answer.dataTestId }
+                      value={ answer.correct }
+                      onClick={ (e) => this.changeColorBtn(e) }
+                      disabled={ isDisable }
+                    >
+                      {answer.question}
+                    </button>
+                  ))}
+                </div>
               </div>
-              {
-                answered && (
-                  <button
-                    data-testid="btn-next"
-                    onClick={ () => this.nextQuestion() }
-                    className="nextBtn"
-                  >
-                    Next
-                  </button>
-                )
-              }
+              <div className="nextBtnContainer">
+                {
+                  answered && (
+                    <button
+                      data-testid="btn-next"
+                      onClick={ () => this.nextQuestion() }
+                      className="nextBtn"
+                    >
+                      Next
+                    </button>
+                  )
+                }
+              </div>
             </div>
           </>
         )}

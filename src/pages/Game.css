@@ -1,0 +1,13 @@
+.triviaContainer {
+  display: flex;
+  left: 23vw;
+  margin: 10px;
+  position: absolute;
+  top: 0;
+}
+
+.questionsFullContainer {
+  display: flex;
+  position: absolute;
+  top: 25%;
+}

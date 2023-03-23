@@ -1,25 +1,33 @@
 .green {
+  align-items: center;
   background: white;
   border: 3px solid rgb(6, 240, 15);
   border-radius: 100px;
+  display: flex;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  height: 64px;
+  justify-content: center;
   line-height: 150%;
-  width: 50%;
+  margin-top: 10px;
+  min-height: 5vh;
+  width: 20vw;
 }
 
 .red {
+  align-items: center;
   background: white;
   border: 3px solid red;
   border-radius: 100px;
+  display: flex;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  height: 64px;
+  justify-content: center;
   line-height: 150%;
-  width: 50%;
+  margin-top: 10px;
+  min-height: 5vh;
+  width: 20vw;
 }
 
 .mainContainer {
@@ -27,13 +35,16 @@
 }
 
 .containerQuestion {
+  align-items: center;
   background: white;
   border-radius: 10px;
   box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   margin: 20px;
-  max-width: 45%;
+  margin-left: 12vw;
+  min-height: 20vh;
+  min-width: 45vw;
 }
 
 .questionYellowBox {
@@ -47,15 +58,15 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  height: 45px;
+  height: 50px;
   justify-content: center;
   letter-spacing: 0.12em;
   line-height: 150%;
-  padding: 10px;
+  padding: 0;
   position: absolute;
   text-align: center;
-  top: 380px;
-  width: 550px;
+  top: 0;
+  width: 40vw;
 }
 
 .questionTimerContainer {
@@ -89,18 +100,22 @@
   display: flex;
   justify-content: center;
   margin: 10px;
-  min-width: fit-content;
+  position: relative;
 }
 
 .default {
+  align-items: center;
   background: white;
   border-radius: 100px;
+  display: flex;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  height: 64px;
+  justify-content: center;
   line-height: 150%;
-  width: 50%;
+  margin-top: 10px;
+  min-height: 5vh;
+  width: 20vw;
 }
 
 .default:hover {
@@ -108,13 +123,23 @@
 }
 
 .nextBtn {
+  align-items: center;
   background: #2fc18c;
+  border: none;
   border-radius: 5px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  display: block;
-  width: 200px;
+  display: flex;
+  height: 3vh;
+  justify-content: center;
+  margin: 10px;
+  width: 20vw;
 }
 
 .nextBtn:hover {
   background: #218b65;
+}
+
+.nextBtnContainer {
+  display: flex;
+  position: relative;
 }

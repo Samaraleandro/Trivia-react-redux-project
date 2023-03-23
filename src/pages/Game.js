@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 import trivia from '../Images/trivia.png';
+import './Game.css';
 
 class Game extends Component {
   render() {
@@ -10,8 +11,12 @@ class Game extends Component {
     return (
       <div>
         <Header />
-        <img src={ trivia } alt="trivia" />
-        <Questions history={ history } />
+        <div className="triviaContainer">
+          <img src={ trivia } alt="trivia" />
+        </div>
+        <div className="questionsFullContainer">
+          <Questions history={ history } />
+        </div>
       </div>
     );
   }
