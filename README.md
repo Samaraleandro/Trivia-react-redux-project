@@ -44,7 +44,7 @@ Para rodar os testes, rode o seguinte comando
 ```
 
 
-## Stack utilizada
+## Stacks utilizadas
 
 **Front-end:** React, Redux, CSS, Javascript
 
