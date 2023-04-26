@@ -1,11 +1,60 @@
-Oitavo projeto de Front-end 
 
-Jogo de perguntas e respostas baseado no jogo Trivia utilizando React e Redux.
+# Projeto Trivia React Redux
+
+Este projeto consiste em um jogo de perguntas e respostas.
 
 A pessoa usuária poderá:
 
-Logar no jogo e, se o email tiver cadastro no site Gravatar, ter sua foto associada ao perfil da pessoa usuária.
-Acessar a página referente ao jogo, onde se deverá escolher uma das respostas disponíveis para cada uma das perguntas apresentadas. A resposta deve ser marcada antes do contador de tempo chegar a zero, caso contrário a resposta deverá ser considerada errada.
-Ser redirecionada, após 5 perguntas respondidas, para a tela de score, onde o texto mostrado depende do número de acertos.
-Visualizar a página de ranking, se quiser, ao final de cada jogo.
-Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app.
+- Logar no jogo. Se o email estiver cadastrado no site Gravatar, terá a foto associada.
+
+- Escolher uma das respostas disponíveis para cada uma das perguntas. A resposta deve ser selecionada antes do contador de tempo chegar a zero.
+
+- Após 5 perguntas respondidas será recirecionado(a) para a tela de score.
+
+- Visualizar a página de ranking, ao final de cada jogo. 
+
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone git@github.com:Samaraleandro/Trivia-react-redux-project.git
+
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm start
+```
+
+
+## Rodando os testes
+
+Para rodar os testes, rode o seguinte comando
+
+```bash
+  npm test
+```
+
+
+## Stack utilizada
+
+**Front-end:** React, Redux, CSS, Javascript
+
+
+## Autores
+
+- [@douglasbacelar](https://github.com/douglasbacelar)
+
+- [@andrevporto](https://github.com/andrevporto) 
+
+- [@larissaassilva](https://github.com/larissaassilva) 
+
+- [@Samaraleandro](https://github.com/Samaraleandro) 
