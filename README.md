@@ -1,7 +1,7 @@
 
 # Projeto Trivia React Redux
 
-Este projeto consiste em um jogo de perguntas e respostas.
+Este é um projeto realizado através da escola de Desenvolvimento Web, Trybe, no módulo de Front-end. Consiste em um jogo de perguntas e respostas.
 
 A pessoa usuária poderá:
 
